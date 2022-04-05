@@ -1,0 +1,13 @@
+<odoo>
+  <data>
+    <record id="mantenimiento_mant" model="res.groups">
+      <field name="name">Mantenimiento-Mantenimiento</field>
+    </record>
+    <record id="mantenimiento_emple" model="res.groups">
+      <field name="name">Mantenimiento-Empleado</field>
+    </record>
+    <record id="mantenimiento_admin" model="res.groups">
+      <field name="name">Mantenimiento-Administrador</field>
+    </record>
+  </data>
+</odoo>

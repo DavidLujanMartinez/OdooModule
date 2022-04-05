@@ -1,0 +1,374 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="mantenimiento.list">
+      <field name="name">mantenimiento list</field>
+      <field name="model">mantenimiento.mantenimiento</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="mantenimiento.action_window">
+      <field name="name">mantenimiento window</field>
+      <field name="res_model">mantenimiento.mantenimiento</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="mantenimiento.action_server">
+      <field name="name">mantenimiento server</field>
+      <field name="model_id" ref="model_mantenimiento_mantenimiento"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="mantenimiento" id="mantenimiento.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="mantenimiento.menu_1" parent="mantenimiento.menu_root"/>
+    <menuitem name="Menu 2" id="mantenimiento.menu_2" parent="mantenimiento.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="mantenimiento.menu_1_list" parent="mantenimiento.menu_1"
+              action="mantenimiento.action_window"/>
+    <menuitem name="Server to list" id="mantenimiento" parent="mantenimiento.menu_2"
+              action="mantenimiento.action_server"/>
+-->
+
+
+
+  <!-- Vista de arbol en departamentos -->
+<record model="ir.ui.view" id="mantenimiento.departamento_tree">
+  <field name="name">mantenimiento.departamento.tree</field>
+  <field name="model">mantenimiento.departamento</field>
+  <field name="arch" type="xml">
+    <tree>
+
+      <field name="name"/>
+      <field name="numero"/>
+
+    </tree>
+  </field>
+</record>
+
+
+  <!-- Vista de formulaio en departamentos -->
+<record model="ir.ui.view" id="mantenimiento.departamento_form">
+  <field name="name">mantenimiento.departamento.form</field>
+  <field name="model">mantenimiento.departamento</field>
+  <field name="arch" type="xml">
+    <form>
+      <group colspan ="2" col="2">
+        <field name="name"/>
+        <field name="numero"/>
+        <field name="productos">
+          <tree>
+              <field name="name"/>
+          </tree>
+        </field>
+        <field name="empleados">
+          <tree>
+              <field name="name"/>
+              <field name="apellidos"/>
+          </tree>
+        </field>
+      </group>
+    </form>
+  </field>
+</record>
+
+
+  <!-- Acciones de ventana para departamento -->
+<record model = "ir.actions.act_window" id = "mantenimiento.departamento_action_window">
+      <field name = "name">Departamentos</field>
+      <field name = "res_model">mantenimiento.departamento</field>
+      <field name = "view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Vista de arbol en producto -->
+  <record model="ir.ui.view" id="mantenimiento.producto_tree">
+    <field name="name">mantenimiento.producto.tree</field>
+    <field name="model">mantenimiento.producto</field>
+    <field name="arch" type="xml">
+      <tree>
+
+        <field name="name"/>
+        <field name="fecha_compra"/>
+
+      </tree>
+    </field>
+  </record>
+
+
+    <!-- Vista de formulaio en producto -->
+  <record model="ir.ui.view" id="mantenimiento.producto_form">
+    <field name="name">mantenimiento.producto.form</field>
+    <field name="model">mantenimiento.producto</field>
+    <field name="arch" type="xml">
+      <form>
+        <group colspan ="2" col="2">
+          <field name="name"/>
+          <field name="fecha_compra"/>
+          <field name="ubicacion">
+            <tree>
+                <field name="name"/>
+                <field name="numero"/>
+            </tree>
+          </field>
+          <field name="reparaciones">
+            <tree>
+                <field name="fecha_ini"/>
+                <field name="fecha_fin"/>
+                <field name="horas"/>
+            </tree>
+          </field>
+        </group>
+      </form>
+    </field>
+  </record>
+
+  <!-- Acciones de ventana para producto -->
+<record model = "ir.actions.act_window" id = "mantenimiento.producto_action_window">
+      <field name = "name">Productos</field>
+      <field name = "res_model">mantenimiento.producto</field>
+      <field name = "view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Vista de arbol en empleado -->
+  <record model="ir.ui.view" id="mantenimiento.empleado_tree">
+    <field name="name">mantenimiento.empleado.tree</field>
+    <field name="model">mantenimiento.empleado</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="DNI"/>
+        <field name="name"/>
+        <field name="apellidos"/>
+      </tree>
+    </field>
+  </record>
+
+
+    <!-- Vista de formulaio en empleado -->
+  <record model="ir.ui.view" id="mantenimiento.empleado_form">
+    <field name="name">mantenimiento.empleado.form</field>
+    <field name="model">mantenimiento.empleado</field>
+    <field name="arch" type="xml">
+      <form>
+        <group colspan ="2" col="2">
+          <field name="DNI"/>
+          <field name="name"/>
+          <field name="apellidos"/>
+          <field name="departamento">
+            <tree>
+                <field name="name"/>
+                <field name="numero"/>
+            </tree>
+          </field>
+          <field name="emple_reportes">
+            <tree>
+                <field name="produc"/>
+                <field name="fecha_ini"/>
+            </tree>
+          </field>
+          <field name="emple_reparaciones">
+            <tree>
+                <field name="produc"/>
+                <field name="fecha_ini"/>
+                <field name="fecha_fin"/>
+                <field name="horas"/>
+            </tree>
+          </field>
+        </group>
+      </form>
+    </field>
+  </record>
+
+  <!-- Acciones de ventana para empleado -->
+<record model = "ir.actions.act_window" id = "mantenimiento.empleado_action_window">
+      <field name = "name">Empleados</field>
+      <field name = "res_model">mantenimiento.empleado</field>
+      <field name = "view_mode">tree,form</field>
+    </record>
+
+
+    <!-- ______________________________________________________________________________________ -->
+    <!-- Vista kanban en reparacion -->
+
+  <record model="ir.ui.view" id="mantenimiento.reparacion_kanban">
+    <field name="name">mantenimiento.reparacion.kanvan</field>
+    <field name="model">mantenimiento.reparacion</field>
+    <field name="arch" type="xml">
+      <kanban default_group_by="estado" default_order="estado desc">
+        <templates>
+          <t t-name="kanban-box">
+            <div class="oe_dropdown_kanban">
+              <div class="oe_dropdown_toggle">
+                <i class="fa fa-bars fa-lg"/>
+                <ul class="oe_dropdown_menu">
+                  <li>
+                    <a type="delete">Borrar</a>
+                  </li>
+                  <li>
+                    <a type="edit">Modificar</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="oe_clear"></div>
+            </div>
+            <div t-attf-class="oe_kanban_content">
+              Producto:<field name="produc"/>
+              <br/>
+              Reportado por:<field name="emple"/>
+              <br/>
+              Fecha incidencia:<field name="fecha_ini"/>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+    <!-- ______________________________________________________________________________________ -->
+
+
+    <!-- Vista de arbol en reparacion -->
+  <record model="ir.ui.view" id="mantenimiento.reparacion_tree">
+    <field name="name">mantenimiento.reparacion.tree</field>
+    <field name="model">mantenimiento.reparacion</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="produc"/>
+        <field name="fecha_ini"/>
+        <field name="estado"/>
+
+      </tree>
+    </field>
+  </record>
+
+  <!-- Vista de formulaio en reparacion para para modificarla mientras se repara  -->
+<record model="ir.ui.view" id="mantenimiento.reparacion_mante_form">
+  <field name="name">mantenimiento.reparacion.form</field>
+  <field name="model">mantenimiento.reparacion</field>
+   <field name="priority">10</field>
+  <field name="arch" type="xml">
+    <form>
+      <group colspan ="2" col="2">
+        <field name="fecha_ini"/>
+        <field name="estado"/>
+        <field name="produc">
+          <tree>
+              <field name="name"/>
+          </tree>
+        </field>
+        <field name="emple">
+          <tree>
+            <field name="DNI"/>
+            <field name="name"/>
+            <field name="apellidos"/>
+          </tree>
+        </field>
+        <field name="emple_repara">
+          <tree>
+            <field name="DNI"/>
+            <field name="name"/>
+            <field name="apellidos"/>
+          </tree>
+        </field>
+        <field name="descripcion"/>
+        <field name="fecha_fin"/>
+        <field name="horas"/>
+        <field name="totaldias"/>
+      </group>
+    </form>
+  </field>
+</record>
+
+    <!-- Vista de formulaio en reparacion para crear una reparacion -->
+  <record model="ir.ui.view" id="mantenimiento.reparacion_emple_form">
+    <field name="name">mantenimiento.reparacion.form</field>
+    <field name="model">mantenimiento.reparacion</field>
+  <!--  Prueba para dar permisos a la vista corta al grupo de empleados y que los de mantenimiento puedan modificar todos los datos con la de abajo
+  <field name = "groups_id" eval = "[(6, 0, [ref ('mantenimiento.mantenimiento_emple')])]" /> -->
+    <field name="arch" type="xml">
+      <form>
+        <group colspan ="2" col="2">
+          <field name="fecha_ini"/>
+          <field name="descripcion"/>
+          <field name="produc">
+            <tree>
+                <field name="name"/>
+            </tree>
+          </field>
+          <field name="emple">
+            <tree>
+              <field name="DNI"/>
+              <field name="name"/>
+              <field name="apellidos"/>
+            </tree>
+          </field>
+        </group>
+      </form>
+    </field>
+  </record>
+
+
+
+
+  <!-- Acciones de ventana para reparacion que ven los empleados, solo pueden crear el reporte-->
+<record model = "ir.actions.act_window" id = "mantenimiento.reparacion_action_window">
+      <field name = "name">Reparaciones</field>
+      <field name = "res_model">mantenimiento.reparacion</field>
+      <field name="view_id" ref="mantenimiento.reparacion_emple_form"/>
+      <field name = "view_mode">kanban,tree,form</field>
+    </record>
+
+
+    <!-- Acciones de ventana para reparacion de mantenimiento y administrador -->
+  <record model = "ir.actions.act_window" id = "mantenimiento.reparacion_mante_action_window">
+        <field name = "name">Reparaciones</field>
+        <field name = "res_model">mantenimiento.reparacion</field>
+        <field name = "view_mode">kanban,tree,form</field>
+      </record>
+
+
+  <!-- Definicion de los menus -->
+<!-- Menu que aparece arriba a la izquierda -->
+  <menuitem name="MANTENIMIENTO" id="mantenimiento.menu_root"/>
+<!-- Submenus -->
+  <menuitem name="Reparaciones" id="mantenimiento.reparacion_menu" parent="mantenimiento.menu_root" groups="mantenimiento_emple" action="mantenimiento.reparacion_action_window"/>
+  <menuitem name="Reparaciones" id="mantenimiento.reparacion_mante_menu" parent="mantenimiento.menu_root" groups="mantenimiento_mant,mantenimiento_admin" action="mantenimiento.reparacion_mante_action_window"/>
+  <menuitem name="Departamentos" id="mantenimiento.departamento_menu" parent="mantenimiento.menu_root" action="mantenimiento.departamento_action_window"/>
+  <menuitem name="Empleados" id="mantenimiento.empleados_menu" parent="mantenimiento.menu_root" action="mantenimiento.empleado_action_window"/>
+  <menuitem name="Productos" id="mantenimiento.producto_menu" parent="mantenimiento.menu_root" action="mantenimiento.producto_action_window"/>
+
+
+
+
+
+
+
+  </data>
+</odoo>

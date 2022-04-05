@@ -1,0 +1,151 @@
+<odoo>
+  <data>
+    <!-- DEPARTAMETOS -->
+    <record id="departamento1" model="mantenimiento.departamento">
+      <field name="name">RRHH</field>
+      <field name="numero">10</field>
+    </record>
+
+    <record id="departamento2" model="mantenimiento.departamento">
+      <field name="name">Desarrollo</field>
+      <field name="numero">20</field>
+    </record>
+
+    <record id="departamento3" model="mantenimiento.departamento">
+      <field name="name">Finanzas</field>
+      <field name="numero">30</field>
+    </record>
+
+    <!-- PRODUCTOS -->
+
+  <record id="producto1" model="mantenimiento.producto">
+    <field name="name">Ordenador1</field>
+    <field name="fecha_compra">2022-01-01</field>
+    <field name="ubicacion" ref="departamento1"/>
+  </record>
+
+  <record id="producto2" model="mantenimiento.producto">
+    <field name="name">Ordenador2</field>
+    <field name="fecha_compra">2021-06-25</field>
+    <field name="ubicacion" ref="departamento2"/>
+  </record>
+
+  <record id="producto3" model="mantenimiento.producto">
+    <field name="name">Ordenador3</field>
+    <field name="fecha_compra">2021-06-25</field>
+    <field name="ubicacion" ref="departamento2"/>
+  </record>
+
+  <record id="producto4" model="mantenimiento.producto">
+    <field name="name">Ordenador4</field>
+    <field name="fecha_compra">2019-02-22</field>
+    <field name="ubicacion" ref="departamento3"/>
+  </record>
+
+  <record id="producto5" model="mantenimiento.producto">
+    <field name="name">Ordenador5</field>
+    <field name="fecha_compra">2019-02-22</field>
+    <field name="ubicacion" ref="departamento3"/>
+  </record>
+
+      <!-- EMPLEADOS-->
+      <record id="empleado1" model="mantenimiento.empleado">
+        <field name="DNI">11111111A</field>
+        <field name="name">David</field>
+        <field name="apellidos">Lujan Martinez</field>
+        <field name="departamento" ref="departamento1"/>
+      </record>
+
+      <record id="empleado2" model="mantenimiento.empleado">
+        <field name="DNI">22222222B</field>
+        <field name="name">Alberto</field>
+        <field name="apellidos">Martinez Munoz</field>
+        <field name="departamento" ref="departamento1"/>
+      </record>
+
+      <record id="empleado3" model="mantenimiento.empleado">
+        <field name="DNI">33333333C</field>
+        <field name="name">Antonio Jose</field>
+        <field name="apellidos">Cortes Camacho</field>
+        <field name="departamento" ref="departamento2"/>
+      </record>
+
+      <record id="empleado4" model="mantenimiento.empleado">
+        <field name="DNI">44444444D</field>
+        <field name="name">Perico</field>
+        <field name="apellidos">Rodriguez</field>
+        <field name="departamento" ref="departamento2"/>
+      </record>
+
+      <record id="empleado5" model="mantenimiento.empleado">
+        <field name="DNI">55555555E</field>
+        <field name="name">Mercedes</field>
+        <field name="apellidos">Lopez</field>
+        <field name="departamento" ref="departamento3"/>
+      </record>
+
+      <record id="empleado6" model="mantenimiento.empleado">
+        <field name="DNI">66666666F</field>
+        <field name="name">Josefa</field>
+        <field name="apellidos">Augurio</field>
+        <field name="departamento" ref="departamento3"/>
+      </record>
+
+
+      <!-- REPARACIONES
+      produc
+    fecha_ini
+    emple
+    emple_repara
+    descripcion
+    estado
+    horas
+    fecha_fin
+    totaldias-->
+
+
+    <record id="reparacion1" model="mantenimiento.reparacion">
+      <field name="produc"  eval="[(6,0,[ref('producto1')])]"/>
+      <field name="fecha_ini">2022-03-05</field>
+      <field name="emple" ref="empleado1"/>
+      <field name="emple_repara" eval="[(6,0,[ref('empleado3')])]"/>
+      <field name="descripcion">Salta una pantalla azul cada vez que intento iniciar el orndeador</field>
+      <field name="estado">completado</field>
+      <field name="horas">4</field>
+      <field name="fecha_fin">2022-03-08</field>
+    </record>
+
+    <record id="reparacion2" model="mantenimiento.reparacion">
+      <field name="produc"  eval="[(6,0,[ref('producto2')])]"/>
+      <field name="fecha_ini">2022-01-18</field>
+      <field name="emple" ref="empleado1"/>
+      <field name="emple_repara" eval="[(6,0,[ref('empleado3')])]"/>
+      <field name="descripcion">Texto de prueba 2</field>
+      <field name="estado">proceso</field>
+    </record>
+
+    <record id="reparacion3" model="mantenimiento.reparacion">
+      <field name="produc"  eval="[(6,0,[ref('producto3')])]"/>
+      <field name="fecha_ini">2022-03-08</field>
+      <field name="emple" ref="empleado3"/>
+      <field name="descripcion">Texto de prueba 3</field>
+      <field name="estado">pendiente</field>
+    </record>
+
+    <record id="reparacion4" model="mantenimiento.reparacion">
+      <field name="produc"  eval="[(6,0,[ref('producto5')])]"/>
+      <field name="fecha_ini">2022-03-08</field>
+      <field name="emple" ref="empleado5"/>
+      <field name="descripcion">Texto de prueba 4</field>
+      <field name="estado">pendiente</field>
+    </record>
+
+
+
+
+
+
+
+
+  </data>
+</odoo>

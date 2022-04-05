@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+mantenimiento_rep_mant,Tmantenimiento,model_mantenimiento_reparacion,mantenimiento_mant,1,1,1,1
+mantenimiento_dep_mant,Tmantenimiento,model_mantenimiento_departamento,mantenimiento_mant,1,0,0,0
+mantenimiento_pro_mant,Tmantenimiento,model_mantenimiento_producto,mantenimiento_mant,1,1,1,1
+mantenimiento_emp_mant,Tmantenimiento,model_mantenimiento_empleado,mantenimiento_mant,1,0,0,0
+
+mantenimiento_rep_emp,Tmantenimiento,model_mantenimiento_reparacion,mantenimiento_emple,1,0,1,0
+mantenimiento_pro_emp,Tmantenimiento,model_mantenimiento_producto,mantenimiento_emple,1,0,0,0
+mantenimiento_emp_emp,Tmantenimiento,model_mantenimiento_empleado,mantenimiento_emple,1,0,0,0
+
+mantenimiento_rep_admin,Tmantenimiento,model_mantenimiento_reparacion,mantenimiento_admin,1,1,1,1
+mantenimiento_dep_admin,Tmantenimiento,model_mantenimiento_departamento,mantenimiento_admin,1,1,1,1
+mantenimiento_pro_admin,Tmantenimiento,model_mantenimiento_producto,mantenimiento_admin,1,1,1,1
+mantenimiento_emp_admin,Tmantenimiento,model_mantenimiento_empleado,mantenimiento_admin,1,1,1,1

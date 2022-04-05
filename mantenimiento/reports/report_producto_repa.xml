@@ -1,0 +1,50 @@
+<odoo>
+  <data>
+
+    <record id="mantenimiento.report_producto_repa" model="ir.actions.report">
+      <field name="name">Informe de las reparaciones de un producto</field>
+      <field name="model">mantenimiento.producto</field>
+      <field name="report_type">qweb-html</field>
+      <field name="report_name">mantenimiento.report_producto_repa_view</field>
+      <field name="report_file">mantenimiento.report_producto_repa_view</field>
+      <field name="binding_model_id" ref="model_mantenimiento_producto"/>
+      <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_producto_repa_view">
+      <t t-call = "web.html_container">
+        <t t-call = "web.external_layout">
+          <t t-foreach="docs" t-as="producto">
+
+            <div class="page">
+              <h2 t-field="producto.name"/>
+              <p> Fecha de compra:<span t-field="producto.fecha_compra"/> </p>
+              <h3>Reparaciones:</h3>
+
+              <table class="table table·sm o_main_table">
+                <thead>
+                  <tr>
+                    <th>Fecha Inicio</th>
+                    <th>descripcion</th>
+                    <th>Fecha de finalizacion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="producto.reparaciones" t-as="reparacion">
+                    <tr>
+                      <td><span t-field="reparacion.fecha_ini"/></td>
+                      <td><span t-field="reparacion.descripcion"/></td>
+                      <td><span t-field="reparacion.fecha_fin"/></td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+
+            </div>
+          </t>
+        </t>
+      </t>
+    </template>
+
+  </data>
+</odoo>

@@ -1,0 +1,66 @@
+<odoo>
+  <data>
+
+    <record id="mantenimiento.report_empleado_repa" model="ir.actions.report">
+      <field name="name">Informe de las reparaciones que ha realizado un empleado</field>
+      <field name="model">mantenimiento.empleado</field>
+      <field name="report_type">qweb-html</field>
+      <field name="report_name">mantenimiento.report_empleado_repa_view</field>
+      <field name="report_file">mantenimiento.report_empleado_repa_view</field>
+      <field name="binding_model_id" ref="model_mantenimiento_empleado"/>
+      <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_empleado_repa_view">
+      <t t-call = "web.html_container">
+        <t t-call = "web.external_layout">
+          <t t-foreach="docs" t-as="empleado">
+          <t t-set="i" t-value="0"/>
+            <div class="page">
+
+              <h2> Empleado:<span t-field="empleado.name"/> <span t-field="empleado.apellidos"/> </h2>
+              <h3>Reparaciones:</h3>
+
+              <table class="table table·sm o_main_table">
+                <thead>
+                  <tr>
+                    <th>Fecha Inicio</th>
+                    <th>descripcion</th>
+                    <th>Nº de horas</th>
+                    <th>Fecha de finalizacion</th>
+                    <th>Dias en reparacion</th>
+                    <th>Producto</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="empleado.emple_reparaciones" t-as="reparacion">
+                    <t t-set="i" t-value="i+1"/>
+                    <tr>
+                      <td><span t-field="reparacion.fecha_ini"/></td>
+                      <td><span t-field="reparacion.descripcion"/></td>
+                      <td><span t-field="reparacion.horas"/></td>
+                      <td><span t-field="reparacion.fecha_fin"/></td>
+                      <td><span t-field="reparacion.totaldias"/></td>
+                      <td>
+                        <tbody>
+                          <t t-foreach="reparacion.produc" t-as="producto">
+                            <span t-field="producto.name"/>
+                          </t>
+                        </tbody>
+                      </td>
+                    </tr>
+
+                  </t>
+                </tbody>
+              </table>
+              <strong> Total de reparacion: </strong>
+              <span t-esc="i"/>
+            </div>
+          </t>
+        </t>
+      </t>
+    </template>
+
+  </data>
+</odoo>
